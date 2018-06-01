@@ -3,23 +3,44 @@ public class MarsRover {
     private Position position;
 
 
-    public MarsRover(Plateau plateau, int xPosition, int yPosition, Direction direction) {
+    public MarsRover(Plateau plateau, int xPosition, int yPosition, CompassPoint compassPoint) {
         this.plateau = plateau;
-        this.position = new Position(xPosition,yPosition,direction);
+        this.position = new Position(xPosition, yPosition, compassPoint);
     }
 
     public String getPosition() {
-        return position.getXPosition()+" "+position.getYPosition()+" "+position.getDirection();
+        return position.toString();
     }
 
-    public void move(String m) {
-        for(int i=0;i<m.length();i++) {
-            if (m.charAt(i)=='M') {
-                position = new Position(position.getXPosition() + 1, position.getYPosition(), position.getDirection());
-            }
-            if (m.equals("L")) {
-                position = new Position(position.getXPosition(), position.getYPosition(), Direction.E);
-            }
+    public void move(String message) {
+        for (int i = 0; i < message.length(); i++) {
+            if (message.charAt(i) == 'M') {
+                switch (position.getCompassPoint()) {
+                    case N: {
+                        if (position.getyPosition() + 1 < plateau.getMaxY())
+                            position = new Position(position.getxPosition(), position.getyPosition() + 1, position.getCompassPoint());
+                        break;
+                    }
+
+                    case W: {
+                        if (position.getxPosition() - 1 >= 0)
+                            position = new Position(position.getxPosition() - 1, position.getyPosition(), position.getCompassPoint());
+                        break;
+                    }
+                    case S: {
+                        if (position.getyPosition() - 1 >= 0)
+                            position = new Position(position.getxPosition(), position.getyPosition() - 1, position.getCompassPoint());
+                        break;
+                    }
+                    case E: {
+                        if (position.getxPosition() + 1 < plateau.getMaxX())
+                            position = new Position(position.getxPosition() + 1, position.getyPosition(), position.getCompassPoint());
+                        break;
+                    }
+                }
+            } else {
+                position = position.changeDirection(message.charAt(i));
+                }
         }
     }
 }
