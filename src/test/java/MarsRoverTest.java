@@ -28,9 +28,4 @@ public class MarsRoverTest {
         assertEquals("1 2 E",marsRover.getPosition());
     }
 
-    @Test
-    public void return22EWhenRoverIsMoved(){
-        marsRover.move("ML");
-        assertEquals("2 2 E",marsRover.getPosition());
-    }
 }
