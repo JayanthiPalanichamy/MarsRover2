@@ -11,40 +11,46 @@ public class Position {
 
     @Override
     public String toString() {
-        return xPosition +" "+ yPosition +" "+ compassPoint;
+        return xPosition + " " + yPosition + " " + compassPoint;
     }
 
-    public CompassPoint getCompassPoint() {
-        return compassPoint;
-    }
-
-    public int getxPosition() {
-        return xPosition;
-    }
-
-    public int getyPosition() {
-        return yPosition;
-    }
-
-    public Position changeDirection(char direction) {
-        if(direction=='L'){
-            switch (compassPoint){
-                case N: return new Position(xPosition,yPosition, CompassPoint.W);
-                case E:return new Position(xPosition,yPosition, CompassPoint.N);
-                case S: return new Position(xPosition,yPosition, CompassPoint.E);
-                case W: return new Position(xPosition,yPosition, CompassPoint.S);
-                default: return null;
-            }
-
+    public Position incrementPosition() {
+        switch (compassPoint) {
+            case N: return new Position(xPosition, yPosition + 1, compassPoint);
+            case W: return new Position(xPosition - 1, yPosition, compassPoint);
+            case S: return new Position(xPosition, yPosition - 1, compassPoint);
+            case E: return new Position(xPosition + 1, yPosition, compassPoint);
         }
-        else {
-            switch (compassPoint){
-                case N: return new Position(xPosition,yPosition, CompassPoint.E);
-                case E:return new Position(xPosition,yPosition, CompassPoint.S);
-                case S: return new Position(xPosition,yPosition, CompassPoint.W);
-                case W: return new Position(xPosition,yPosition, CompassPoint.N);
-                default: return null;
-            }
+        return null;
+    }
+
+    public Position changeDirectionClockwise() {
+        switch (compassPoint) {
+            case N:
+                return new Position(xPosition, yPosition, CompassPoint.E);
+            case E:
+                return new Position(xPosition, yPosition, CompassPoint.S);
+            case S:
+                return new Position(xPosition, yPosition, CompassPoint.W);
+            case W:
+                return new Position(xPosition, yPosition, CompassPoint.N);
+            default:
+                return null;
+        }
+    }
+
+    public Position changeDirectionAntiClockwise() {
+        switch (compassPoint) {
+            case N:
+                return new Position(xPosition, yPosition, CompassPoint.W);
+            case E:
+                return new Position(xPosition, yPosition, CompassPoint.N);
+            case S:
+                return new Position(xPosition, yPosition, CompassPoint.E);
+            case W:
+                return new Position(xPosition, yPosition, CompassPoint.S);
+            default:
+                return null;
         }
     }
 }

@@ -15,32 +15,14 @@ public class MarsRover {
     public void move(String message) {
         for (int i = 0; i < message.length(); i++) {
             if (message.charAt(i) == 'M') {
-                switch (position.getCompassPoint()) {
-                    case N: {
-                        if (position.getyPosition() + 1 <= plateau.getMaxY())
-                            position = new Position(position.getxPosition(), position.getyPosition() + 1, position.getCompassPoint());
-                        break;
-                    }
-
-                    case W: {
-                        if (position.getxPosition() - 1 >= 0)
-                            position = new Position(position.getxPosition() - 1, position.getyPosition(), position.getCompassPoint());
-                        break;
-                    }
-                    case S: {
-                        if (position.getyPosition() - 1 >= 0)
-                            position = new Position(position.getxPosition(), position.getyPosition() - 1, position.getCompassPoint());
-                        break;
-                    }
-                    case E: {
-                        if (position.getxPosition() + 1 <= plateau.getMaxX())
-                            position = new Position(position.getxPosition() + 1, position.getyPosition(), position.getCompassPoint());
-                        break;
-                    }
-                }
-            } else {
-                position = position.changeDirection(message.charAt(i));
-                }
+                position=position.incrementPosition();
+            }
+            else if(message.charAt(i)=='L') {
+                position = position.changeDirectionAntiClockwise();
+            }
+            else if(message.charAt(i)=='R'){
+                position = position.changeDirectionClockwise();
+            }
         }
     }
 }

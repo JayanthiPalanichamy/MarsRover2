@@ -7,11 +7,4 @@ public class Plateau {
         this.maxY = maxY;
     }
 
-    public int getMaxY() {
-        return maxY;
-    }
-
-    public int getMaxX() {
-        return maxX;
-    }
 }
