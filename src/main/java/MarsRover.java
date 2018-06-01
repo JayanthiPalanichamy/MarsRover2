@@ -17,7 +17,7 @@ public class MarsRover {
             if (message.charAt(i) == 'M') {
                 switch (position.getCompassPoint()) {
                     case N: {
-                        if (position.getyPosition() + 1 < plateau.getMaxY())
+                        if (position.getyPosition() + 1 <= plateau.getMaxY())
                             position = new Position(position.getxPosition(), position.getyPosition() + 1, position.getCompassPoint());
                         break;
                     }
@@ -33,7 +33,7 @@ public class MarsRover {
                         break;
                     }
                     case E: {
-                        if (position.getxPosition() + 1 < plateau.getMaxX())
+                        if (position.getxPosition() + 1 <= plateau.getMaxX())
                             position = new Position(position.getxPosition() + 1, position.getyPosition(), position.getCompassPoint());
                         break;
                     }
