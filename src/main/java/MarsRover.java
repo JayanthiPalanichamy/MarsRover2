@@ -15,7 +15,7 @@ public class MarsRover {
     public void move(String message) {
         for (int i = 0; i < message.length(); i++) {
             if (message.charAt(i) == 'M') {
-                position=position.incrementPosition();
+                position=position.incrementPositionTowardsCompassPoint();
             }
             else if(message.charAt(i)=='L') {
                 position = position.changeDirectionAntiClockwise();
